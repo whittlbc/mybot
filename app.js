@@ -29,7 +29,7 @@ app.use('/messages', messages);
 
 // create and start server
 var server = app.listen(app.get('port'), function() {
-    console.log('Listening on 8080');
+    console.log('Listening on 3000');
 });
 
 
