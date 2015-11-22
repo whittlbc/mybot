@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Famous-Node-Skeleton</title>
+        <link rel="stylesheet" type="text/css" href="css/app.css" />
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    </head>
+    <body>
+        <input type="text" placeholder="My Input"/>
+        <button>Button</button>
+        <script type="text/javascript">
+            $('button').click(function () {
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function(){
+                    if (xhr.readyState==4 && xhr.status == 200){
+                        console.log('heard success');
+                    }
+                };
+                xhr.open('post', '/message', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify({message: $('input').val()}));
+            });
+        </script>
+    </body>
+</html>
