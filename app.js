@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var debug = require('debug')('newTest');
 var routes = require('./routes/index');
-var users = require('./routes/users');
 var messages = require('./routes/messages');
 var app = express();
 
@@ -24,7 +23,6 @@ app.use(express.static(path.join(__dirname, 'client')));
 
 // set up routes
 app.use('/', routes);
-app.use('/users', users);
 app.use('/messages', messages);
 
 // create and start server

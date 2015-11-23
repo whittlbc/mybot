@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Matcher = require('../matcher');
+var Matcher = require('../src/matcher');
 var Constants = require('../utils/constants');
 var bookshelf = require('../bookshelf');
 var Session = require('../models/session');
