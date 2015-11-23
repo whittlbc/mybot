@@ -1,4 +1,4 @@
-var Service = require('./service');
+var Integration = require('./integration');
 var inherits = require('inherits');
 var assign = require('lodash/object/assign');
 
@@ -7,7 +7,7 @@ function Google (options) {
   options = options || {};
 }
 
-inherits(Google, Service);
+inherits(Google, Integration);
 
 assign(Google.prototype, {
 
