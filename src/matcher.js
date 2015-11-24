@@ -2,6 +2,7 @@ var SuperClass = require('./superclass');
 var inherits = require('inherits');
 var assign = require('lodash/object/assign');
 var integrationsMap = require('./integrations/map');
+var Service = require('../models/service');
 
 // Matcher Class
 function Matcher (options) {
@@ -37,10 +38,12 @@ assign(Matcher.prototype, {
   },
 
   foundMatch: function (pattern) {
-    var service = pattern.service;
-    var integration = integrationsMap[service.name](); // calling something like Uber() or Google(), etc.
-    integration.refreshToken(service, function () {
-      this[service.action_method]();
+    new Service({id: pattern.service_id}).fetch().then(function (service) {
+      service = service.toJSON();
+      var integration = new (integrationsMap[service.name])();
+      integration.refreshToken(service, function () {
+        (integration[service.action_method])();
+      });
     });
   }
 

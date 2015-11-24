@@ -10,4 +10,3 @@ assign(Integration.prototype, {
 });
 
 module.exports = Integration;
-
