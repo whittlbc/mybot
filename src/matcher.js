@@ -20,7 +20,8 @@ assign(Matcher.prototype, {
     // use for loop so that we have the options of breaking out early
     for (var i = 0; i < this.patterns.length; i++) {
       var pattern = this.patterns[i];
-      if (text.match(pattern.regex) != null) {
+      var regex = this.getRegexFromStringRegexPattern(pattern.regex);
+      if (text.match(regex) != null) {
         matchingPattern = pattern;
         break;
       }
@@ -35,6 +36,13 @@ assign(Matcher.prototype, {
     } else {
       return { foundMatch: false };
     }
+  },
+
+  getRegexFromStringRegexPattern: function (stringPattern) {
+    // 1. check for any modifiers and pluck those off the string, but remember those
+    // 2. Pluck off the '/' at the beginning and ends after removing modifiers
+    // 3. Iterate through what's left of the string pattern and escape all the '\' forward slashes with another forward slash
+    // 4. call new RegExp(yourFinalString, modifiers);
   },
 
   foundMatch: function (pattern) {
