@@ -1,6 +1,7 @@
 var Integration = require('./integration');
 var inherits = require('inherits');
 var assign = require('lodash/object/assign');
+var request = require('../request');
 
 // Uber Service
 function Uber (options) {
@@ -26,8 +27,14 @@ assign(Uber.prototype, {
 
   getHistory: function () {
     console.log('GETTING HISTORY');
+    //request.get('https://api.uber.com/authorize', {
+    //  client_id: 'id',
+    //  client_secret: 'secret'
+    //}, {success: function (resp) {
+    //  console.log('TEMP TOKEN:', resp.body.token);
+    //}});
   }
-
+  
 });
 
 module.exports = Uber;
