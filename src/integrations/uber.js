@@ -2,10 +2,12 @@ var Integration = require('./integration');
 var inherits = require('inherits');
 var assign = require('lodash/object/assign');
 var request = require('../request');
+var uber = require('node-uber');
 
 // Uber Service
 function Uber (options) {
   options = options || {};
+  this.serverToken = 'hr_2wmSJ9wuVLBu-i885fR4SmfHLPByJM6tfhvTh';
 }
 
 inherits(Uber, Integration);
@@ -34,7 +36,7 @@ assign(Uber.prototype, {
     //  console.log('TEMP TOKEN:', resp.body.token);
     //}});
   }
-  
+
 });
 
 module.exports = Uber;
