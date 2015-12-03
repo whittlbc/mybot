@@ -1,10 +1,10 @@
 var assign = require('lodash/object/assign');
 
-function OAuth (options) {
+function RateLimiter (options) {
   options = options || {};
 }
 
-assign(OAuth.prototype, {
+assign(RateLimiter.prototype, {
 
   myFunc: function () {
     var self = this;
@@ -13,5 +13,5 @@ assign(OAuth.prototype, {
 
 });
 
-module.exports = OAuth;
+module.exports = RateLimiter;
 

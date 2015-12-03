@@ -1,5 +1,3 @@
-var SuperClass = require('./superclass');
-var inherits = require('inherits');
 var assign = require('lodash/object/assign');
 var request = require('request');
 
@@ -7,8 +5,6 @@ var request = require('request');
 function Request (options) {
   options = options || {};
 }
-
-inherits(Request, SuperClass);
 
 assign(Request.prototype, {
 
