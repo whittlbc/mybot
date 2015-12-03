@@ -29,12 +29,6 @@ assign(Uber.prototype, {
 
   getHistory: function () {
     console.log('GETTING HISTORY');
-    //request.get('https://api.uber.com/authorize', {
-    //  client_id: 'id',
-    //  client_secret: 'secret'
-    //}, {success: function (resp) {
-    //  console.log('TEMP TOKEN:', resp.body.token);
-    //}});
   }
 
 });

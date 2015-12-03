@@ -42,6 +42,7 @@ assign(Matcher.prototype, {
     new Service({id: pattern.service_id}).fetch({withRelated: ['integration']}).then(function (service) {
       var integration = service.related('integration').toJSON();
       var myIntegration = new (integrationsMap[integration.name])();
+      myIntegration.configure(integration);
       var serviceData = service.toJSON();
       myIntegration.refreshToken(serviceData, function () {
         (myIntegration[serviceData.action_method])();

@@ -13,13 +13,13 @@ assign(Request.prototype, {
     options = options || {};
     var self = this;
 
-    var data = {
+    var obj = {
       url: url,
       method: method,
       json: data
     };
 
-    request(data, function (error, response, body) {
+    request(obj, function (error, response, body) {
       if (error || response.statusCode != 200) {
         if (options.error) {
           options.error(JSON.parse(error));
