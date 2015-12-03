@@ -1,7 +1,7 @@
 var Integration = require('./integration');
 var inherits = require('inherits');
 var assign = require('lodash/object/assign');
-var request = require('../request');
+var request = require('../base/request');
 var uber = require('node-uber');
 
 // Uber Service
