@@ -1,15 +1,17 @@
 var assign = require('lodash/object/assign');
 var request = require('request');
+var RateLimiter = require('./rate_limiter');
 
-// Request Class
 function Request (options) {
   options = options || {};
+  this.rateLimiter = new RateLimiter();
 }
 
 assign(Request.prototype, {
 
   makeRequest: function (url, method, data, options) {
     options = options || {};
+    var self = this;
 
     var data = {
       url: url,
@@ -18,13 +20,20 @@ assign(Request.prototype, {
     };
 
     request(data, function (error, response, body) {
-      if (error) {
+      if (error || response.statusCode != 200) {
         if (options.error) {
-          options.error();
+          options.error(JSON.parse(error));
         }
       } else {
         if (options.success) {
-          options.success();
+          var successData = {
+            response: JSON.parse(body)
+          };
+          var rateLimitObj = self.rateLimiter.isRelevant(response);
+          if (rateLimitObj.relevant) {
+            successData.rateLimitData = rateLimitObj.data;
+          }
+          options.success(successData);
         }
       }
     });
