@@ -1,13 +1,21 @@
 var Integration = require('./integration');
 var inherits = require('inherits');
 var assign = require('lodash/object/assign');
-var request = require('../base/request');
 var uber = require('node-uber');
 
-// Uber Service
+
 function Uber (options) {
   options = options || {};
   this.serverToken = 'hr_2wmSJ9wuVLBu-i885fR4SmfHLPByJM6tfhvTh';
+
+  this.CONFIG = {
+    version: 'v1',
+    scopes: ['profile', 'history', 'request', 'request_receipt'],
+    headers: '',
+    redirectURL: 'http://localhost:3000'
+  };
+
+  this.CONFIG.baseURL = 'https://api.uber.com/' + this.CONFIG.version;
 }
 
 inherits(Uber, Integration);

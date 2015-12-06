@@ -40,12 +40,18 @@ assign(Matcher.prototype, {
 
   foundMatch: function (pattern) {
     new Service({id: pattern.service_id}).fetch({withRelated: ['integration']}).then(function (service) {
-      var integration = service.related('integration').toJSON();
-      var myIntegration = new (integrationsMap[integration.name])();
-      myIntegration.configure(integration);
+      // establish references for the data pulled from the DB
+      var integrationData = service.related('integration').toJSON();
       var serviceData = service.toJSON();
-      myIntegration.refreshToken(serviceData, function () {
-        (myIntegration[serviceData.action_method])();
+
+      // Ex: var integration = new Uber()...new Google()...etc.
+      var integration = new (integrationsMap[integrationData.name])();
+      // configure integration instance with it's tokens and other relevant config info
+      integration.configure(integrationData);
+      // refresh user's access token if it needs to be refreshed
+      integration.refreshToken(serviceData, function () {
+        // this doesn't make any sense anymore
+        (integration[serviceData.action_method])();
       });
     });
   }

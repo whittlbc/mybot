@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Use this script to easily create a new project with a GH repo automatically tied it (action == 0)
+# Can also be used to automatically tie in a sandbox Heroku Node server and create a new Node-Express project (action == 1)
+
+# How to use: $ bash supercreate dirName action
+
+if [ $# -gt 1 ] then
+
+	# Create new directory, new GH repo, new Node-Express app, and new sandbox Heroku Node server
+	if [ $2 == '1' ]
+	then
+		cd 'users'
+		mkdir 'ben'
+		cd 'ben'
+		git clone https://github.com/whittlbc/mybot.git
+		cd 'mybot' 
+		heroku create
+		git push heroku master
+		heroku ps:scale web=1
+		echo "Successfully created new GH repo, sandbox Heroku server, and Node-Express app!"
+	fi
+
+fi
+
+
+
+

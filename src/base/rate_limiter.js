@@ -20,6 +20,11 @@ assign(RateLimiter.prototype, {
         limit: rateLimit,
         remaining: rateRemaining,
         reset: rateReset
+      };
+
+      // if out of requests, log something on our end to have stats on how often this is happening
+      if (rateRemaining == 0) {
+        // logger.info('Rate Limit: Out of Requests');
       }
     }
 
