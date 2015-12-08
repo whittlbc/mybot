@@ -1,8 +1,12 @@
 var assign = require('lodash/object/assign');
-var HeyScript = require('./scripts/hey_script');
-var scripts = [HeyScript];
-var socket;
+var scriptsPath = require('path').join(__dirname, 'scripts');
+var scripts = [];
 
+require('fs').readdirSync(scriptsPath).forEach(function(file) {
+  scripts.push(require('./scripts/' + file));
+});
+
+var socket;
 var NO_MATCH_MESSAGE = 'Sorry, I don\'t have a command for that :(';
 
 function Socket (server) {
