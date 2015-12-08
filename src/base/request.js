@@ -58,4 +58,3 @@ assign(Request.prototype, {
 });
 
 module.exports = Request;
-

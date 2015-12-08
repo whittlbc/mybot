@@ -9,10 +9,3 @@ var Integration = bookshelf.Model.extend({
 });
 
 module.exports = Integration;
-
-
-new Integration({'token': req.body.token}).fetch({withRelated: ['user.patterns']}).then(function (session) {
-  if (session) {
-    cb(session.related('user').toJSON().patterns);
-  }
-});

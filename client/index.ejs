@@ -4,33 +4,17 @@
         <title>MyBot</title>
         <link rel="stylesheet" type="text/css" href="css/app.css" />
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.22/require.min.js"></script>
+        <script type="text/javascript">
+            require.config({baseUrl: 'src/'});
+            require(['app']);
+        </script>
     </head>
     <body>
-
         <!--Message your bot-->
         <div style="margin-top: 50px;">
             <input type="text" id="message" placeholder="Message your bot"/>
             <button id="submitMessage">Message</button>
         </div>
-
-        <script type="text/javascript">
-
-            // Message your bot
-            $('#submitMessage').click(function () {
-                var xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = function(){
-                    if (xhr.readyState==4 && xhr.status == 200){
-                        console.log(xhr.responseText);
-                    }
-                };
-                xhr.open('post', '/messages/', true);
-                xhr.setRequestHeader('Content-Type', 'application/json');
-                xhr.send(JSON.stringify({
-                    text: $('#message').val(),
-                    token: 'myToken'
-                }));
-            });
-
-        </script>
     </body>
 </html>

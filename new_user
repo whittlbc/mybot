@@ -8,7 +8,7 @@ cd 'mybot'
 heroku create
 git push heroku master
 heroku ps:scale web=1
-echo "Successfully created new GH repo, sandbox Heroku server, and Node-Express app!"
+echo "Successfully created Heorku instance for new user"
 
 
 
