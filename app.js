@@ -30,17 +30,13 @@ var server = app.listen(app.get('port'), function() {
     console.log('Listening on 3000');
 });
 
-//var socketServer = require('http').createServer(app);
 var io = require('socket.io')(server);
 io.on('connection', function(socket){
     console.log('heard Node connection');
-    socket.on('message', function (data) {
-        console.log(data);
-        socket.emit('response', 'back and forth');
+    socket.on('messageToServer', function (data) {
+        socket.emit('response', 'Bot reporting for duty!');
     });
 });
-//server.listen(8080);
-
 
 // Error handling shit
 

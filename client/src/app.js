@@ -5,5 +5,9 @@ define(function(require, module, exports) {
   socket.on('response', function (responseData) {
     console.log(responseData);
   });
-  socket.emit('message', 'mytext');
+
+  $('button').click(function () {
+    socket.emit('messageToServer', $('input').val())
+  });
+
 });
