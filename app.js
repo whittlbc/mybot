@@ -25,8 +25,13 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use('/', routes);
 app.use('/messages', messages);
 
-var socketServer = require('http').createServer(app);
-var io = require('socket.io')(socketServer);
+// create and start server
+var server = app.listen(app.get('port'), function() {
+    console.log('Listening on 3000');
+});
+
+//var socketServer = require('http').createServer(app);
+var io = require('socket.io')(server);
 io.on('connection', function(socket){
     console.log('heard Node connection');
     socket.on('message', function (data) {
@@ -34,12 +39,7 @@ io.on('connection', function(socket){
         socket.emit('response', 'back and forth');
     });
 });
-socketServer.listen(8080);
-
-// create and start server
-var server = app.listen(app.get('port'), function() {
-    console.log('Listening on 3000');
-});
+//server.listen(8080);
 
 
 // Error handling shit
